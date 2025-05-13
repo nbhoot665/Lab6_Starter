@@ -59,6 +59,8 @@ function saveRecipesToStorage(recipes) {
 	// B1. TODO - Complete the functionality as described in this function
 	//            header. It is possible in only a single line, but should
 	//            be no more than a few lines.
+	const serialized = JSON.stringify(recipes);
+	localStorage.setItem('recipes', serialized);
 }
 
 /**
@@ -67,6 +69,8 @@ function saveRecipesToStorage(recipes) {
  */
 function initFormHandler() {
 	// B2. TODO - Get a reference to the <form> element
+	const form = document.getElementById('new-recipe');
+
 	// B3. TODO - Add an event listener for the 'submit' event, which fires when the
 	//            submit button is clicked
 	// Steps B4-B9 will occur inside the event listener from step B3
@@ -80,8 +84,14 @@ function initFormHandler() {
 	// B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
 	//            then save the recipes array back to localStorage
 	// B10. TODO - Get a reference to the "Clear Local Storage" button
+	const clearButton = document.querySelector('button.danger');
+	
 	// B11. TODO - Add a click event listener to clear local storage button
-	// Steps B12 & B13 will occur inside the event listener from step B11
-	// B12. TODO - Clear the local storage
-	// B13. TODO - Delete the contents of <main>
+	clearButton.addEventListener('click', function () {
+		// Steps B12 & B13 will occur inside the event listener from step B11
+		// B12. TODO - Clear the local storage
+		// B13. TODO - Delete the contents of <main>
+		localStorage.clear();
+		document.querySelector('main').innerHTML = '';
+	});
 }
