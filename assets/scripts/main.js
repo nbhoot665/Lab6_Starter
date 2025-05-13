@@ -69,6 +69,30 @@ function initFormHandler() {
 	// B2. TODO - Get a reference to the <form> element
 	// B3. TODO - Add an event listener for the 'submit' event, which fires when the
 	//            submit button is clicked
+	form.addEventListener('submit', e => {            // B3
+		e.preventDefault();                             
+	
+	
+		const fd = new FormData(form);                  // B4
+	
+		
+		const recipeObject = {};                        // B5
+		fd.forEach((val, key) => { recipeObject[key] = val });  // B5
+	
+		
+		const card = document.createElement('recipe-card');     // B6
+	
+		
+		card.data = recipeObject;                       // B7
+	
+		
+		document.querySelector('main').appendChild(card);        // B8
+	
+		
+		const recipe = getRecipesFromStorage();                  // B9
+		recipe.push(recipeObject);
+		saveRecipesToStorage(recipe);                            // Save updated list
+	  });
 	// Steps B4-B9 will occur inside the event listener from step B3
 	// B4. TODO - Create a new FormData object from the <form> element reference above
 	// B5. TODO - Create an empty object (we'll refer to this object as recipeObject to
